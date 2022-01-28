@@ -17,14 +17,14 @@ public class MarkdownParse {
             
             String closeBracket = markdown.substring(nextCloseBracket+1, nextCloseBracket+2); 
             if (!closeBracket.equals("(")) break;
-
+            
             int openParen = markdown.indexOf("(", nextCloseBracket);
             int closeParen = markdown.indexOf(")", openParen);
             //System.out.println("nextCloseB: " + nextCloseBracket + "; nextOpenB: "+ nextOpenBracket + "; currentIdx" + currentIndex +"\n");
-            if (nextOpenBracket == 0 || markdown.charAt(nextOpenBracket-1) != '!') 
+            if ( (nextOpenBracket ==0) || markdown.charAt(nextOpenBracket-1) != '!')
                 toReturn.add(markdown.substring(openParen + 1, closeParen));
             currentIndex = closeParen + 1;
-            System.out.println(currentIndex);
+            //System.out.println(currentIndex);
         }
         return toReturn;
     }
