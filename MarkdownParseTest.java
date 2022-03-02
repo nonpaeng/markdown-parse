@@ -1,14 +1,10 @@
 import static org.junit.Assert.*;
-
-import java.nio.file.Path;
-import java.util.List;
-
-import java.util.ArrayList;
-
 import org.junit.*;
-
 import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MarkdownParseTest {
     @Test
@@ -69,7 +65,28 @@ public class MarkdownParseTest {
         assertEquals(List.of(), links);
     }
     
-    //@Test
-    //public void 
+    @Test
+    public void snippet1Tester() throws IOException{
+        Path actualOutput = Path.of("snippet1.md");
+        String contents = Files.readString(actualOutput);
+        ArrayList<String> links = MarkdownParse.getLinks(contents);
+        assertEquals(List.of("`google.com", "google.com", "ucsd.edu"), links);
+    }
 
+    @Test
+    public void snippet2Tester() throws IOException{
+        Path actualOutput = Path.of("snippet2.md");
+        String contents = Files.readString(actualOutput);
+        ArrayList<String> links = MarkdownParse.getLinks(contents);
+        assertEquals(List.of("a.com", "a.com(())", "example.com"), links);
+    }
+
+    @Test
+    public void snippet3Tester() throws IOException{
+        Path actualOutput = Path.of("snippet3.md");
+        String contents = Files.readString(actualOutput);
+        ArrayList<String> links = MarkdownParse.getLinks(contents);
+        assertEquals(List.of("https://www.twitter.com", 
+            "https://ucsd-cse15l-w22.github.io/", "https://cse.ucsd.edu/"), links);
+    }
 }
