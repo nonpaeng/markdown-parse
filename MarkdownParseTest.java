@@ -86,7 +86,6 @@ public class MarkdownParseTest {
         Path actualOutput = Path.of("snippet3.md");
         String contents = Files.readString(actualOutput);
         ArrayList<String> links = MarkdownParse.getLinks(contents);
-        assertEquals(List.of("https://www.twitter.com", 
-            "https://ucsd-cse15l-w22.github.io/", "https://cse.ucsd.edu/"), links);
+        assertEquals(List.of("https://ucsd-cse15l-w22.github.io/"), links);
     }
 }
